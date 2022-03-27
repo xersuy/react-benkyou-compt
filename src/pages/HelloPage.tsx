@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-type Props = {}
+type Props = {};
 
 const HelloPage = (props: Props) => {
   return (
-    <div>HelloPage</div>
-  )
-}
+    <div className="hello_page">
+      <h1>HelloPage</h1>
+    </div>
+  );
+};
 
-export default HelloPage
+export default HelloPage;

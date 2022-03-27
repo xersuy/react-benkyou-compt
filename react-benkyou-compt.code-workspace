@@ -4,6 +4,7 @@
       "path": "./"
     }
   ],
+
   "settings": {
     "[javascript]": {
       "editor.rulers": [100],
@@ -15,7 +16,10 @@
       "editor.tabSize": 2,
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+      // "source.fixAll.sortJSON": true
+    },
     "files.encoding": "utf8",
     "search.exclude": {
       "**/node_modules": true

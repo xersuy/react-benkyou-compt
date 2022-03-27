@@ -1,12 +1,18 @@
-import React,{FC} from 'react'
+import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
+import Button from '../Button';
 
-type WrapperProps = {
-}
+type WrapperProps = {};
+const BUTTONS = ['HELLO', 'BYE', 'WARN'];
 
-const Wrapper: FC<WrapperProps> = ({children}) => {
+const Wrapper: FC<WrapperProps> = ({ children }) => {
   return (
-    <div>{children}</div>
-  )
-}
+    <div className="wrapper">
+      <div>{children}</div>
 
-export default Wrapper
+      <div id="common_modal_view" />
+    </div>
+  );
+};
+
+export default Wrapper;
