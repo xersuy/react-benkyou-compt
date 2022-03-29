@@ -20,10 +20,22 @@
       "source.fixAll": true
       // "source.fixAll.sortJSON": true
     },
+
     "files.encoding": "utf8",
     "search.exclude": {
       "**/node_modules": true
     },
+
     "editor.formatOnSave": true
+  },
+  "extensions": {
+    "recommendations": [
+      "CoenraadS.bracket-pair-colorizer-2",
+      "dsznajder.es7-react-js-snippets",
+      "heybourn.headwind",
+      "csstools.postcss",
+      "bradlc.vscode-tailwindcss",
+      "formulahendry.auto-close-tag"
+    ]
   }
 }
