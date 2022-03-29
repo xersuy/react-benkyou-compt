@@ -13,7 +13,7 @@ function App() {
       <Wrapper>
         <BrowserRouter>
           <Routes>
-            <Route path="/hello" element={<HelloPage />} />
+            <Route path="/" element={<HelloPage />} />
             <Route path="/bye" element={<ByePage />} />
             <Route path="/warn" element={<WarnPage />} />
           </Routes>
@@ -24,18 +24,3 @@ function App() {
 }
 
 export default App;
-
-{
-  /* <Route path="/" element={<App />}> */
-}
-{
-  /* <Route index element={<Home />} /> */
-}
-{
-  /* <Route path="teams" element={<Teams />}> */
-}
-{
-  /* <Route path=":teamId" element={<Team />} />
-          <Route path="new" element={<NewTeamForm />} />
-          <Route index element={<LeagueStandings />} /> */
-}
