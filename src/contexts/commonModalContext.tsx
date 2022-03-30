@@ -18,11 +18,11 @@ const MODAL_TYPE_MAPPER = {
   },
   error: {
     color: 'common-red',
-    icon: '',
+    icon: 'bug',
   },
   secondAlert: {
     color: 'common-green',
-    icon: '',
+    icon: 'face-smile',
   },
 };
 type ModalType = keyof typeof MODAL_TYPE_MAPPER;
@@ -39,6 +39,8 @@ interface CommonState {
   backdrop?: boolean;
   title?: string;
   content?: string | ReactNode;
+  hideCancleButton?: boolean;
+  hideConfirmButton?: boolean;
   onConfirmFunc?(): void;
   onCancleFunc?(): void;
   confirmText?: string;
@@ -56,6 +58,8 @@ const INIT_COMMON_STATE: CommonState = {
   topContent: '',
   content: '',
   bottomContent: '',
+  hideCancleButton: false,
+  hideConfirmButton: false,
   onConfirmFunc: undefined,
   onCancleFunc: undefined,
   confirmText: '확인',

@@ -8,7 +8,7 @@ import classNames from 'classnames';
 type CommonModalProps = {};
 const Container = styled.div`
   position: absolute;
-  width: 500px;
+  width: 800px;
   top: 50%;
   left: 50%;
   overflow: hidden;
@@ -22,11 +22,18 @@ const Container = styled.div`
 const CommonModal: FC<CommonModalProps> = () => {
   const { commonState, closeCommonModal } = useContext(CommonModalContext);
 
-  const { on, color, onConfirmFunc, onCancleFunc } = commonState;
+  const { on, onConfirmFunc, onCancleFunc } = commonState;
 
   const _color = useMemo(() => {
-    console.log(`bg-${commonState.color}`);
-    return `bg-${commonState.color}`;
+    const COLOR_MAP = {
+      'common-yellow': 'bg-common-yellow',
+      'common-orange': 'bg-common-orange',
+      'common-green': 'bg-common-green',
+      'common-red': 'bg-common-red',
+      'common-blue': 'bg-common-blue',
+    };
+
+    return COLOR_MAP[commonState.color ?? 'common-yellow'];
   }, [commonState]);
 
   const handleConfirm = useCallback(() => {
@@ -61,31 +68,105 @@ const CommonModal: FC<CommonModalProps> = () => {
             _color,
           )}
         >
-          {/* //   'bg-common-yellow': commonState.color === 'common-yellow',
-            //   'bg-common-orange': commonState.color === 'common-orange',
-            //   'bg-common-green': commonState.color === 'common-green',
-            //   'bg-common-red': commonState.color === 'common-red',
-            //   'bg-common-blue': commonState.color === 'common-blue', */}
-          {commonState.icon ? (
-            <div className="mr-[10px]">
+          {commonState?.title && commonState.icon ? (
+            <div className="flex flex-col justify-center align-center mr-[10px]">
               <FontAwesomeIcon
-                size={'2x'}
+                size={'lg'}
                 color="#fff"
                 icon={['fas', commonState.icon]}
               />
             </div>
           ) : null}
-          <div className="flex flex-col justify-center text-2xl align-center">
+          <div className="flex flex-col items-center justify-center text-lg font-bold text-white">
             {commonState?.title ?? ''}
           </div>
+          <div className="flex absolute right-[2.5rem]">
+            <button
+              title="twitter"
+              type="button"
+              className=""
+              onClick={closeCommonModal}
+            >
+              <FontAwesomeIcon size={'2x'} color="#fff" icon={['fas', 'x']} />
+            </button>
+          </div>
         </div>
-        <div>
-          <div>topContent</div>
-          <div>content</div>
-          <div>bottomContent</div>
+
+        <div className="flex flex-col p-10">
+          {commonState.topContent && (
+            <div className="flex flex-row items-center justify-start text-zinc-400">
+              <div className="flex items-center justify-center mr-1">
+                <FontAwesomeIcon
+                  size={'xs'}
+                  color="#9ca3af"
+                  icon={['fas', 'exclamation']}
+                />
+              </div>
+              <div className="text-sm truncate">{commonState.topContent}</div>
+            </div>
+          )}
+
+          <div className="pt-5 pb-5">{commonState.content}</div>
+
+          {commonState.bottomContent && (
+            <div className="flex flex-row items-center justify-start text-zinc-400">
+              <div className="flex items-center justify-center mr-1">
+                <FontAwesomeIcon
+                  size={'xs'}
+                  color="#9ca3af"
+                  icon={['fas', 'exclamation']}
+                />
+              </div>
+              <div className="text-sm truncate">
+                {commonState.bottomContent}
+              </div>
+            </div>
+          )}
         </div>
-        <button onClick={handleCancel}>취소</button>
-        <button onClick={handleConfirm}>확인</button>
+        <div className="flex flex-row items-center justify-center w-full px-10 mt-10 mb-10">
+          {commonState.onConfirmFunc ? (
+            <>
+              {!commonState.hideCancleButton && (
+                <button
+                  className={classNames(
+                    'mr-[16px] flex items-center justify-center rounded-lg w-full h-[50px] border p-5',
+                    'border-gray-400',
+                    // _color,
+                  )}
+                  onClick={handleCancel}
+                >
+                  {commonState.cancleText}
+                </button>
+              )}
+              {!commonState.hideConfirmButton && (
+                <button
+                  className={classNames(
+                    'flex items-center justify-center rounded-lg w-full text-white h-[50px] border p-5',
+                    _color,
+                  )}
+                  onClick={handleConfirm}
+                >
+                  {commonState.confirmText}
+                </button>
+              )}
+            </>
+          ) : (
+            <>
+              {!commonState.hideCancleButton && (
+                <button
+                  className={classNames(
+                    'flex items-center justify-center rounded-lg w-full h-[50px] border p-5',
+                    'border-gray-400',
+                    // _color,
+                  )}
+                  onClick={handleCancel}
+                >
+                  {commonState.cancleText}
+                </button>
+              )}
+            </>
+          )}
+        </div>
       </Container>
     </Portal>
   );
